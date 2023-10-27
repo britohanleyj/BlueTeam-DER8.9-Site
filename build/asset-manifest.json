@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.283cabe7.css",
+    "main.js": "/static/js/main.633a3a8e.js",
+    "static/media/home-background1.jpg": "/static/media/home-background1.be4101d80aeab219962f.jpg",
+    "static/media/energystorage.jpeg": "/static/media/energystorage.872a1f01c5c08de85108.jpeg",
+    "static/media/energy-management-system-for-microgrids.png": "/static/media/energy-management-system-for-microgrids.7cfd9722501adda0ebd5.png",
+    "static/media/shutterstock_1504979759-1-scaled.jpg": "/static/media/shutterstock_1504979759-1-scaled.396b1cf0768501812f67.jpg",
+    "static/media/smart-grid.jpg": "/static/media/smart-grid.a072c18313c4d333a83a.jpg",
+    "static/media/solarpanel.jpg": "/static/media/solarpanel.68ff4b954edd62e4f5f2.jpg",
+    "static/media/DER.jpg": "/static/media/DER.0041280427d6d34b49bb.jpg",
+    "static/media/IEC–DRP_IMAGE1.jpg": "/static/media/IEC–DRP_IMAGE1.c1c0315ad0b98a4a1713.jpg",
+    "static/media/DER8-9.png": "/static/media/DER8-9.7d74d21be123dc207da9.png",
+    "static/media/error_401.jpg": "/static/media/error_401.8bd39d1dd2f7d9bb3a53.jpg",
+    "static/media/default.jpg": "/static/media/default.84fa46fb9bf3bceb700b.jpg",
+    "index.html": "/index.html",
+    "main.283cabe7.css.map": "/static/css/main.283cabe7.css.map",
+    "main.633a3a8e.js.map": "/static/js/main.633a3a8e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.283cabe7.css",
+    "static/js/main.633a3a8e.js"
+  ]
+}
