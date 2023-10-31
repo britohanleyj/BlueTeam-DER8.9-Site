@@ -1,0 +1,48 @@
+/* Container for the 3x2 grid */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header style for "About Us" section */
+.about-us h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Header style for "Our Services" section */
+.services h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Style for the grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    grid-gap: 20px; /* Spacing between grid items */
+}
+
+/* Style for each service block */
+.service {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border: 1px solid #ddd;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.service h3 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.service p {
+    font-size: 16px;
+}
+
+/* Style for even-numbered services to create alternating colors */
+.service:nth-child(even) {
+    background-color: #e0e0e0;
+}

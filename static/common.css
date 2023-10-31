@@ -1,0 +1,43 @@
+nav.horizontalNavigation {
+    text-align: center;
+    font-size: 1.5em;
+    line-height: 1.9em;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-color: #0d54aa;
+    color: #f1f1f9;
+}
+
+nav.horizontalNavigation ul li {
+    display: inline; /* Display list items horizontally */
+    margin-right: 10px; /* Add some space between list items */
+    border: 2px solid transparent; /* Add transparent border initially */
+    padding: 5px; /* Optional: Add padding to create space between the text and the border */
+}
+
+nav.horizontalNavigation ul li:hover {
+    border-color: #12fc3d; /* Change border color on hover */
+}
+
+nav.horizontalNavigation a:link,
+nav.horizontalNavigation a:visited {
+    color: #f1f1f9;
+    text-decoration: none; /* Remove underline from links */
+}
+
+nav.horizontalNavigation ul li a img {
+    width: 100px; /* Set the width of the image */
+    height: auto; /* Maintain aspect ratio */
+    vertical-align: middle; /* Align the image to the middle */
+}
+
+footer {
+    background-color: #0d54aa;
+    clear: both; 
+}
+
+footer::after { 
+    clear: both; 
+    content: ""; 
+    display: block;
+}

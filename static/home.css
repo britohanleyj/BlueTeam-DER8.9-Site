@@ -1,0 +1,40 @@
+
+.banner {
+    position: relative;
+    text-align: center;
+}
+
+.banner img {
+    width: 100%;
+    height: auto;
+}
+
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff; /* Text color */
+    background-color: rgba(0, 0, 0, 0.6); /* Background color with transparency */
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.banner-text h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+.banner-text p {
+    font-size: 18px;
+    margin: 0;
+}
+
+/* CSS for the about section */
+.about-section {
+    text-align: center;
+    padding: 20px;
+    background-color: #f3f3f3; /* Background color for the about section */
+    color: #515151; /* Text color for the about section */
+}
