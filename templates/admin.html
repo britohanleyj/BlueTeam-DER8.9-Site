@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='common.css') }}">
+    <title>Admin Portal</title>
+</head>
+<body>
+    <header>
+        {% include "navigation.html" %}
+    </header>
+
+    <div class="sidebar">
+        <ul>
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('contact_submissions') }}">Contact Submissions</a></li>
+            <li><a href="{{ url_for('registered_users') }}">Registered Users</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <h1>Welcome to the Admin Portal</h1>
+    </div>
+    <footer><li><a href="{{ url_for('logout') }}">Logout</a></li></footer>
+</body>
+</html>

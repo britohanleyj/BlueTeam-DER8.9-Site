@@ -32,10 +32,29 @@ nav.horizontalNavigation ul li a img {
 }
 
 footer {
+    text-align: center;
+    font-size: 1.5em;
+    line-height: 1.9em;
+    background-size: auto;
+    background-repeat: no-repeat;
     background-color: #0d54aa;
-    clear: both; 
+    color: #f1f1f9;
+    text-decoration: none; /* Remove underline from links */
 }
-
+footer a:link,
+footer a:visited {
+    color: #f1f1f9;
+    text-decoration: none; /* Remove underline from links */
+}
+footer li {
+    display: inline; /* Display list items horizontally */
+    margin-right: 10px; /* Add some space between list items */
+    border: 2px solid transparent; /* Add transparent border initially */
+    padding: 5px; /* Optional: Add padding to create space between the text and the border */
+}
+footer li:hover {
+    border-color: #12fc3d; /* Change border color on hover */
+}
 footer::after { 
     clear: both; 
     content: ""; 

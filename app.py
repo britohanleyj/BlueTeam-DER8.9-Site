@@ -1,15 +1,13 @@
-from flask import Flask, session, render_template, g, jsonify, request, redirect, url_for
-from flask_wtf import FlaskForm
+from flask import Flask, session, render_template, g, request, redirect, url_for
+from werkzeug.security import generate_password_hash, check_password_hash
 import time
-from wtforms import IntegerField, StringField, SubmitField, DateTimeLocalField
 import sqlite3
 from markupsafe import escape
-from datetime import datetime
 
 app = Flask(__name__)
 DATABASE = 'identifier.sqlite'
 app.config['STATIC_FOLDER'] = 'static'
-app.config['SECRET_KEY'] = 'your_secret_key_here'
+app.config['SECRET_KEY'] = 'oooits secretz'
 
 # creates connection to database
 # to use database just run var = get_db().execute(You SQL code as str)
@@ -29,90 +27,134 @@ def close_connection(exception):
         db.close()
 
 
-
 @app.route('/',methods =['GET', 'POST'])
 def hello_world(): 
     return redirect(url_for('home'))
 
-# class FilterForm(FlaskForm):
-#     CompanyName = StringField('Company Name')
-#     time = DateTimeLocalField('Time')
-#     distance = IntegerField('Distance From Campus')
-#     submit = SubmitField('Filter')
 
 def getDataBaseFilters():
     pass
 
 
-
-
-""" #student profile page
-@app.route("/user-profile", methods=['GET'])
-def accountPage():
-    cur =  get_db()
-    cursor = cur.cursor()
-    cursor.execute("SELECT Name FROM student_users WHERE 1")
-    username_result = cursor.fetchone()
-    cursor.execute("SELECT XUID FROM student_users WHERE 1")
-    banner_result = cursor.fetchone()
-
-    # Extract tuple data
-    username = username_result[0] if username_result else ''
-    banner = banner_result[0] if banner_result else ''
-
-    return render_template('student.html', username=username, banner=banner) """
-
-
-
-@app.route('/login', methods=['GET','POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def getLogin():
     if request.method == 'POST':
-        user = request.form['username'] # Check the form for username
-        if user == 'partner': # Two if statements for other attribute to be applied
-            session['currentUser'] = user # The Users name
-            return redirect(url_for('user'))
-        else:
-            return render_template('login.html') # Return login page if wrong
-    else:
-        if 'currentUser' in session:
-            return redirect(url_for('getDatabase'))
-        return render_template('login.html')
+        email = request.form.get('email')  # Get the email from the form
+        password = request.form.get('password')  # Get the password from the form
 
-@app.route("/Home") #testing
+        # Check if the provided email and password exist in the database
+        user = get_user_from_database(email, password)
+
+        if user:
+            session['user_id'] = user[0]  # Set the user's ID in the session
+            session['user_e'] = user[1]  # Set the user's email in the session
+            if session['user_id'] == 2:
+                return redirect(url_for('admin'))
+            else: 
+                return redirect(url_for('home'))
+        else:
+            return render_template('login.html', login_error=True)
+
+    if 'user_id' in session:
+        return redirect(url_for('home'))
+    return render_template('login.html')
+
+
+@app.route("/Home") 
 def home():
         return render_template('home.html')
 
-@app.route("/About_Us") #testing
+
+@app.route("/About_Us") 
 def aboutUs():
         return render_template('aboutUs.html')
 
-@app.route("/DER_Data") #testing
-def dataDER():
-        return render_template('dataDER.html')
 
-@app.route("/Contact") #testing
+@app.route("/DER_Data")
+def dataDER():
+    if loggedIn():
+        if session['user_id'] == 2:
+            return render_template('dataDER.html')
+    else:
+        return redirect(url_for('data.html'))
+
+
+@app.route("/Contact") 
 def contact():
         return render_template('contact.html')
+
 
 @app.route('/submit', methods=['POST'])
 def submit():
     time.sleep(1)
-    # Display a message within an h1 element
     message = "Submitted Successfully, redirecting in 3 seconds..."
 
     return f"<h1>{message}</h1><script>setTimeout(function(){{window.location.href = '{url_for('home')}'}}, 3000);</script>"
+
+
+@app.route('/admin')
+def admin():
+    if loggedIn():
+        if session['user_id'] == 2:
+            return render_template('admin.html')
+        else:
+            return redirect(url_for('home'))
+    else:
+        return render_template('not_logged_in.html')
+    
+
+@app.route('/dashboard')
+def dashboard():
+    return "Dashboard Page"
+
+@app.route('/contact_submissions')
+def contact_submissions():
+    return "Contact Submissions Page"
+
+@app.route('/registered_users')
+def registered_users():
+    return "Registered Users Page"
+
     
 def loggedIn():
-    if 'currentUser' in session:
+    if 'user_id' in session:
         return True
     else:
         return False
-    
+
+# def add_user_to_database(password):
+#     hashed_password = generate_password_hash(password)
+#     print (hashed_password)
+
+
+
+def get_user_from_database(email, password):
+    db = get_db()
+    cursor = db.cursor()
+
+    # Select the user based on the provided email
+    cursor.execute("SELECT * FROM users WHERE email = ?", (email,))
+    user = cursor.fetchone()
+    print (user)
+
+    if user:
+        # Index 1 corresponds to the 'email' column, and Index 2 corresponds to the 'password' column
+        db_id = user[0]
+        db_email = user[1]
+        db_password = user[2]
+        print (user)
+        # Verify the hashed password
+        if db_email == email and check_password_hash(db_password, password):
+            # Return the user tuple or just the user ID
+            return user
+
+    return None
+
 
 @app.route("/logout")
 def logout():
-    session.pop('currentUser', None)
-    return redirect(url_for('getLogin'))
+    session.pop('user_id', None)
+    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run(debug=True)

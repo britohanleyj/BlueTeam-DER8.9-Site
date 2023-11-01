@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/login.css">
+    <link rel="stylesheet" href="../static/common.css">
     <title>Login</title>
 </head>
 <body>
+    <header>
+        {% include "navigation.html" %}
+    </header>
     <h1>Login</h1>
     <form method="POST" action="/login">
-        <label for="email">Username:</label>
+        <label for="email">Email</label>
         <input type="text" name="email" required><br><br>
         <label for="password">Password:</label>
         <input type="password" name="password" required><br><br>
@@ -21,5 +28,6 @@
             </ul>
         {% endif %}
     {% endwith %}
+    <footer><li><a href="{{ url_for('logout') }}">Logout</a></li></footer>
 </body>
 </html>

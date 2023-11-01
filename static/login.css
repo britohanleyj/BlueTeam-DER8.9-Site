@@ -1,0 +1,74 @@
+/* login.css */
+
+/* Apply styles to the <body> element */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Style the <h1> element */
+h1 {
+    color: #333;
+}
+
+/* Style the form */
+form {
+    background-color: #f3f3f3; 
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(2, 159, 46, 0.2);
+}
+
+/* Style the labels and input fields */
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 25%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #292929;
+    border-radius: 4px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px rgba(2, 159, 46, 0.2);
+}
+
+input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border:#333;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0px 0px 10px rgba(2, 159, 46, 0.2);
+}
+
+input[type="submit"]:hover {
+    background-color: #555;
+}
+
+/* Style the flashes (error messages) */
+.flashes {
+    list-style: none;
+    padding: 0;
+}
+
+.flashes li {
+    color: red;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Style the footer */
+footer {
+    margin-top: 20px;
+}
+
+/* You can add more styles as needed */

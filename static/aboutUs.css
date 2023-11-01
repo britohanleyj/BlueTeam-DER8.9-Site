@@ -26,23 +26,52 @@
 
 /* Style for each service block */
 .service {
-    background-color: #f4f4f4;
     padding: 20px;
     border: 1px solid #ddd;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-size: cover; /* Scale the background image to cover the entire service block */
 }
 
 .service h3 {
+    color: white; /* Text color is white */
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent gray background */
     font-size: 24px;
     margin: 10px 0;
 }
 
 .service p {
     font-size: 16px;
+    color: white; /* Text color is white */
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent gray background */
 }
 
 /* Style for even-numbered services to create alternating colors */
 .service:nth-child(even) {
     background-color: #e0e0e0;
+}
+
+/* Background images for each service block */
+.service:nth-child(1) {
+    background-image: url('../static/media/solarpanel.68ff4b954edd62e4f5f2.jpg');
+}
+
+.service:nth-child(2) {
+    background-image: url('../static/media/energystorage.872a1f01c5c08de85108.jpeg');
+}
+
+.service:nth-child(3) {
+    background-image: url('../static/media/energy-management-system-for-microgrids.7cfd9722501adda0ebd5.png');
+}
+
+.service:nth-child(4) {
+    background-image: url('../static/media/IEC–DRP_IMAGE1.c1c0315ad0b98a4a1713.jpg');
+}
+
+.service:nth-child(5) {
+    background-image: url('../static/media/energy-management-system-for-microgrids.7cfd9722501adda0ebd5.png');
+}
+
+.service:nth-child(6) {
+    background-image: url('../static/media/smart-grid.a072c18313c4d333a83a.jpg');
 }
