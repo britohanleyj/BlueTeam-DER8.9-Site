@@ -75,8 +75,7 @@ def dataDER():
     if loggedIn():
         if session['user_id'] == 2:
             return render_template('dataDER.html')
-    else:
-        return redirect(url_for('data.html'))
+    return redirect(url_for('noData'))
 
 
 @app.route("/Contact") 
@@ -105,15 +104,23 @@ def admin():
 
 @app.route('/dashboard')
 def dashboard():
-    return "Dashboard Page"
-
+    if loggedIn():
+        return "Dashboard Page"
+    else:
+        return render_template('not_logged_in.html')
 @app.route('/contact_submissions')
 def contact_submissions():
-    return "Contact Submissions Page"
+    if loggedIn():
+        return "Contact Submissions Page"
+    else:
+        return render_template('not_logged_in.html')
 
 @app.route('/registered_users')
 def registered_users():
-    return "Registered Users Page"
+    if loggedIn():
+        return "Registered Users Page"
+    else:
+        return render_template('not_logged_in.html')
 
     
 def loggedIn():
@@ -150,11 +157,35 @@ def get_user_from_database(email, password):
 
     return None
 
-
 @app.route("/logout")
 def logout():
     session.pop('user_id', None)
     return redirect(url_for('home'))
 
+@app.route("/noData")
+def noData():
+    return render_template('noData.html')
+    
+@app.route('/update_user_email')
+def update_user_email_route():
+    # Specify the old email and the new email
+    old_email = 'admin@cfc.local'
+    new_email = 'admin@cfc.com'
+
+    # Get the database connection
+    db = get_db()
+    cursor = db.cursor()
+
+    # Check if the user with the old email exists in the database
+    cursor.execute("SELECT id FROM users WHERE email = ?", (old_email,))
+    user_id = cursor.fetchone()
+
+    if user_id:
+        # Update the email for the user with the old email
+        cursor.execute("UPDATE users SET email = ? WHERE email = ?", (new_email, old_email))
+        db.commit()
+        return f"Email updated successfully for user with ID {user_id[0]}."
+
+    return "User not found with the old email."
 if __name__ == '__main__':
     app.run(debug=True)
