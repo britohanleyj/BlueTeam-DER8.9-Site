@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/common.css">
+    <title>DER Data</title>
+</head>
+<body>
+    <header>
+        {% include "navigation.html" %}
+    </header>
+    <h1 style="text-align: center;">DER Data</h1>
+    <div id="chartContainer">
+        <canvas id="liveChart" width="400" height="200"></canvas>
+    </div>
+    <p style="text-align: center;">Sign in to view our Data!</p>
+    <footer>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    </footer>
+</body>
+</html>

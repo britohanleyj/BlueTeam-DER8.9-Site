@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/common.css">
+    <style>
+        /* CSS styles for the chart container */
+        #chartContainer {
+            width: 800px; /* Set the desired width */
+            height: 400px; /* Set the desired height */
+        }
+    </style>
     <title>DER Data</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -12,12 +19,12 @@
         {% include "navigation.html" %}
     </header>
     <h1>DER Data</h1>
-    <canvas id="liveChart" width="400" height="200"></canvas>
-
+    <div id="chartContainer">
+        <canvas id="liveChart"></canvas>
+    </div>
     <footer>
         <li><a href="{{ url_for('logout') }}">Logout</a></li>
     </footer>
-
     <script>
         // Sample data for the live chart
         const data = {
@@ -32,17 +39,18 @@
         };
 
         const config = {
-            type: 'line',
+            type: 'bar', // Set the chart type to 'bar'
             data: data,
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 scales: {
-                    x: {
-                        type: 'linear',
-                        position: 'bottom'
-                    }
-                }
+                    y: {
+                        beginAtZero: true,
+                        min: 0,
+                        max: 100,
+                    },
+                },
             }
         };
 
@@ -52,26 +60,25 @@
 
         // Function to update the live chart with new data
         function updateChart() {
-            // Generate random data
-            const newDataPoint = Math.random() * 100;
+            const newDataPoint = Math.random() * 100; // Generate random data between 0 and 100
             const newLabel = new Date().toLocaleTimeString();
 
             // Add the new data point to the chart
-            liveChart.data.labels.push(newLabel);
-            liveChart.data.datasets[0].data.push(newDataPoint);
+            data.labels.push(newLabel);
+            data.datasets[0].data.push(newDataPoint);
 
             // Limit the number of data points displayed to keep it moving
-            const maxDataPoints = 10;
-            if (liveChart.data.labels.length > maxDataPoints) {
-                liveChart.data.labels.shift();
-                liveChart.data.datasets[0].data.shift();
+            const maxDataPoints = 20;
+            if (data.labels.length > maxDataPoints) {
+                data.labels.shift();
+                data.datasets[0].data.shift();
             }
 
             liveChart.update();
         }
 
-        // Update the chart at regular intervals (e.g., every second)
-        setInterval(updateChart, 1000);
+        // Update the chart at regular intervals (e.g., every 2 seconds)
+        setInterval(updateChart, 2000);
     </script>
 </body>
 </html>
